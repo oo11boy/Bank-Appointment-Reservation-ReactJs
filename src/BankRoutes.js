@@ -6,6 +6,6 @@ import UserDashboard from "./Pages/UserDashboard/UserDashboard";
 
 export let BankRoutes=[
 
-    {path:'/' , element:<UserDashboard/>},
+    {path:'/' , element:<Home/>},
     {path:'/userdashboard' , element:<LoginStatus><UserDashboard/></LoginStatus>},
 ]
