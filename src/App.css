@@ -1,38 +1,41 @@
-.App {
-  text-align: center;
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+
+font-family:isans;
+}
+#root{
+	width: 100%;
+}
+@font-face {
+	font-family: Kalameh2;
+	font-style: normal;
+	font-weight: 900;
+	src: url('/public/Fonts/kalameh_regular.ttf') format('truetype');  /* FF39+,Chrome36+, Opera24+*/
+		}
+
+
+@font-face {
+	font-family: Kalameh;
+	src: url('/public/Fonts/kalamehwebfanum-bold.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+		 url('/public/Fonts/kalamehwebfanum-bold.woff') format('woff');  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+@font-face {
+	font-family: isans;
+	src: url('/public/Fonts/isans.ttf') format('truetype');
+	}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+body{
+	width: 100%;
+    height: 100vh;
+    background-image: url('../public/bghome.png');
+    background-position: left;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+   
 }

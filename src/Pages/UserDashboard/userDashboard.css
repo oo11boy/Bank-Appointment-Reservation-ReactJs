@@ -1,0 +1,109 @@
+.Dashuser{
+    width: 100%;
+    height: auto;
+    background-color:white;
+    display: flex;
+    align-items: start;
+    justify-content: right;
+}
+
+.Dashuser .menu{
+ background-color: #001529;  
+ color: white; 
+ padding: 10px;
+
+}
+
+
+@media screen and (max-width: 700px) {
+    .newres{
+       display: none;
+    }
+    .Dashuser .menu{
+        display: none;
+    }
+    .contentuserdash{
+        width: 100%!important;
+    }
+    
+.mobilemenu{
+    display: flex!important;
+}
+}
+.contentuserdash{
+    width: 80%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.Dashuser .menu p{
+    padding: 10px;
+}
+
+.profile{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+
+.mobilemenu{
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin: auto;
+    background-color: #104d86;
+    position: fixed;
+    bottom: 0;
+   
+    border-top-left-radius: 20%;
+    border-top-right-radius: 20%;
+    color: white;
+    padding: 10px;
+ 
+
+}
+
+.mobilemenu div{
+    border: 1px solid white;
+    border-radius: 50%;
+    padding: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+.mobilemenu svg{
+    font-size: 2.5em;
+
+}
+
+.headermobile{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin: auto;
+    background-color: #104d86;
+    position: fixed;
+    top: 0;
+ 
+    color: white;
+    padding: 10px;
+}
+
+.headermobile svg{
+    font-size: 2em;
+}
+.exit{
+    cursor: pointer;
+}
+
+.newres{
+    cursor: pointer;
+}

@@ -1,0 +1,40 @@
+.Home{
+    width: 100%;
+ 
+  }
+  @media screen and (max-width: 700px) {
+    .formhome{
+      width: 90%!important;
+    }
+  }
+  .formhome{
+    width: 600px;
+    height: auto;
+ margin: auto; 
+    background-color: rgba(0, 0, 0, 0.403);
+    
+    border-radius: 10px;
+  }
+
+  .formhome form{
+    padding: 10px;
+    color: wheat;
+width: 100%;
+  }
+
+  .formhome form input{
+    margin: 10px;
+    width: 60%;
+    padding: 5px;
+    border-radius: 10px;
+  }
+
+  .loghome{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+
+  }
+  .loghome input{
+    width: 25%!important;
+  }
