@@ -11,11 +11,11 @@
     width: 600px;
     height: auto;
  margin: auto; 
-    background-color: rgba(0, 0, 0, 0.403);
+    background-color: rgba(0, 0, 0, 0.632);
     
     border-radius: 10px;
   }
-
+.formhome p{color: white!important; padding: 10px;}
   .formhome form{
     padding: 10px;
     color: wheat;
@@ -24,8 +24,9 @@ width: 100%;
 
   .formhome form input{
     margin: 10px;
-    width: 60%;
+    width: 80%;
     padding: 5px;
+    
     border-radius: 10px;
   }
 
