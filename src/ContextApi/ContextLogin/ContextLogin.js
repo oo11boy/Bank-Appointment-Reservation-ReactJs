@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Api } from "../../Api";
 
 export const ContextLogin = createContext({
     setsignstatus: () => { },
@@ -16,7 +17,9 @@ export const ContextLogin = createContext({
     setemailuserlogin: () => { },
     emailuserlogin: () => { },
     signingo:()=>{},
-    setsigningo:()=>{}
+    setsigningo:()=>{},
+    setadminlogin:()=>{},
+    adminlogin:()=>{}
 })
 
 export const ContextLoginProvider = (props) => {
@@ -25,14 +28,15 @@ export const ContextLoginProvider = (props) => {
     const navigate = useNavigate()
     const [datausers, setdatausers] = useState([])
     const [email, setemail] = useState('')
-    const [islogin, setislogin] = useState(true)
+    const [islogin, setislogin] = useState(false)
+    const [adminlogin,setadminlogin]=useState(false)
     const [emailuserlogin, setemailuserlogin] = useState('')
     const [pass, setpass] = useState('')
     const [signingo,setsigningo]=useState(false)
     useEffect(() => {
         const contentusers = async () => {
             try {
-                const res = await fetch(`http://localhost/Rez/api.php/users`);
+                const res = await fetch(`${Api}users`);
                 const data = await res.json();
                 setdatausers(data);
             } catch (error) {
@@ -71,7 +75,9 @@ export const ContextLoginProvider = (props) => {
         setemailuserlogin,
         emailuserlogin,
         signingo,
-        setsigningo
+        setsigningo,
+        setadminlogin,
+        adminlogin
     }
     return <ContextLogin.Provider value={vals}>{children}</ContextLogin.Provider>
 }

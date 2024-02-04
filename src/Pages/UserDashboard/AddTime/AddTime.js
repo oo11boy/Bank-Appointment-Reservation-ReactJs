@@ -3,9 +3,12 @@ import jalaliMoment from 'jalali-moment';
 import './AddTime.css';
 import { UserInfoContext } from '../../../ContextApi/UserinfoContext/UserInfoContext';
 import { Alert } from 'antd';
+import { useNavigate } from 'react-router-dom';
+import { Api } from '../../../Api';
 
 export default function AddTime() {
   const [timerez, settimerez] = useState('');
+  const [printpage,setprint]=useState(false)
   const [errorMessage, setErrorMessage] = useState([]);
   const uinfocontext = useContext(UserInfoContext);
   const [seealltimes,setseealltimes]=useState(false)
@@ -36,11 +39,20 @@ const [dayend,setdayend]=useState(false)
     const userHasReservation = uinfocontext.datarezerv.some((item) => item.user_id === userinfo.id);
  
     const currentJalaliHour = jalaliMoment().hour();
-    currentJalaliHour >= 12 &&  setdayend(true)
-    if (selectedDateValue === 'امروز' && currentJalaliHour >= 12) {
-      setErrorMessage('تایم کاری امروز به پایان رسیده است. لطفاً زمان دیگری برای مراجعه انتخاب کنید.');
-   
-      return; // Stop further execution
+    console.log(currentJalaliHour)
+    const currentJalaliM = jalaliMoment().minute();
+    console.log(currentJalaliM)
+    console.log(currentJalaliM >=selectedMinute)
+    currentJalaliHour >= 13 &&  setdayend(true)
+    
+    const currentJalaliTime = jalaliMoment();
+    if (selectedDateValue === 'امروز') {
+      const selectedDateTime = selectedDate.set('hour', selectedHour).set('minute', selectedMinute);
+    
+      if (currentJalaliTime.isAfter(selectedDateTime)) {
+        setErrorMessage('زمان انتخابی مربوط به گذشته است، لطفاً زمان دیگری را انتخاب کنید.');
+        return; // Stop further execution
+      }
     } else {
       if (userHasReservation) {
         setErrorMessage('شما قبلا یک بار رزرو کرده اید برای رزرو جدید ابتدا از قسمت رزرو ها نوبت قبلی خود را حدف کنید سپس دوباره اقدام نمایید.');
@@ -62,7 +74,7 @@ const [dayend,setdayend]=useState(false)
           setseealltimes(true)
         } else {
           try {
-            const response = await fetch('http://localhost/Rez/api.php/reservations', {
+            const response = await fetch(`${Api}reservations`, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -72,7 +84,7 @@ const [dayend,setdayend]=useState(false)
 
             if (response.ok) {
               setErrorMessage(`نوبت با موفقیت ثبت شد. نوبت رزرو شده: ${formattedDate}`);
-              // Add the new reservation to the context or handle it as needed
+             setprint(true)
               const newReservation = { user_id: userinfo.id, reserved_time: formattedDate };
               uinfocontext.setdatarezerv([...uinfocontext.datarezerv, newReservation]);
             } else {
@@ -108,7 +120,6 @@ const [dayend,setdayend]=useState(false)
 
     setTomorrowReservations(tomorrowReservations);
   }, [uinfocontext.datarezerv]);
-
   return (
     <form onSubmit={handleSubmit} className="AddTime">
 
@@ -143,6 +154,7 @@ const [dayend,setdayend]=useState(false)
 
       <div className="text-center">
         <button type="submit" className="btn btn-primary">رزرو</button>
+      
       </div>
 
       {/* نمایش تاریخ */}

@@ -22,23 +22,6 @@ const ListTimes = (props) => {
     }
   }, [userinfoC.datarezerv, userinfo]); // Add userinfo as a dependency
 
-  const handleDelete = async (reservationId) => {
-    try {
-       await fetch(`http://localhost/Rez/api.php/reservations/${reservationId}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-
-      message.success('نوبت با موفقیت حذف شد');
-      userinfoC.setdeleteitem(!userinfoC.deleteitem)
-      // Consider fetching updated data after deletion
-    } catch (error) {
-      console.error('Error deleting reservation:', error);
-      message.error('خطا در حذف نوبت');
-    }
-  };
 
   const columns = [
     {
@@ -69,7 +52,7 @@ const ListTimes = (props) => {
         <Space size="middle">
           <Popconfirm
             title="آیا مطمئن هستید که می‌خواهید این نوبت را حذف کنید؟"
-            onConfirm={() => handleDelete(rezerinfo && rezerinfo.user_id)}
+            onConfirm={() => userinfoC.handleDelete(rezerinfo && rezerinfo.user_id)}
             okText="بله"
             cancelText="خیر"
           >
@@ -79,7 +62,7 @@ const ListTimes = (props) => {
       ),
     },
   ];
-console.log(userinfo)
+
   const data = [
     {
       key: 1,

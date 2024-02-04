@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { ContextLogin } from '../../../ContextApi/ContextLogin/ContextLogin';
 import { useNavigate } from 'react-router-dom';
+import { Api } from '../../../Api';
 
 export default function SignIn() {
   const [formData, setFormData] = useState({
@@ -31,7 +32,7 @@ if (formData.email === "" || formData.family === "" || formData.name === "" || f
   }
 else{
   try {
-    const response = await fetch('http://localhost/Rez/api.php/users', {
+    const response = await fetch(`${Api}users`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -61,6 +62,7 @@ Clogin.setsigningo(!Clogin.signingo)
     <form onSubmit={handleSubmit}>
       {mass !="" &&   <p style={{backgroundColor:'black',color:"white", padding:"10px" ,borderRadius:"15px"}}>{mass}</p> 
   }
+  
       <br />
       نام:
       <br />
@@ -83,7 +85,8 @@ Clogin.setsigningo(!Clogin.signingo)
       <input type="password"  placeholder='رمز عبور خود را وارد نمایید...' onChange={(e) => setFormData({ ...formData, password: e.target.value })} />
 
       <div className='loghome'>
-        <input type="submit" value="ثبت نام" />
+        <input type="submit"  value="ثبت نام" />
+        <input type="submit" onClick={()=>Clogin.setsignstatus(false)} value="ورود" />
       </div>
     </form>
   );

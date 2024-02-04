@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { AntDesignOutlined, AppstoreOutlined, LoginOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
+import { AntDesignOutlined, AppstoreOutlined, LoginOutlined, MailOutlined, SettingOutlined, UserAddOutlined, UserOutlined } from '@ant-design/icons';
 import { Avatar, Menu, Switch } from 'antd';
 import './userDashboard.css'
 import AddTime from './AddTime/AddTime';
@@ -9,7 +9,7 @@ import { RiReservedFill } from "react-icons/ri";
 import { ContextLogin } from '../../ContextApi/ContextLogin/ContextLogin';
 import { UserInfoContext } from '../../ContextApi/UserinfoContext/UserInfoContext';
 import { IoIosAddCircle } from "react-icons/io";
-import { IoSettingsSharp } from "react-icons/io5";
+import { IoInformation, IoInformationCircle, IoInformationOutline, IoSettingsSharp } from "react-icons/io5";
 function getItem(label, key, icon, children, type) {
     return {
         key,
@@ -28,8 +28,8 @@ const items = [
     getItem('رزرو ها', 'sub2', <AppstoreOutlined />, [
         getItem(' مشاهده و ویرایش', '2'),
     ]),
-    getItem('تنظیمات', 'sub4', <SettingOutlined />, [
-        getItem('ویرایش پروفایل', '3'),
+    getItem('اطلاعات من', 'sub4', <UserOutlined />, [
+        getItem('مشاهده اطلاعات', '3'),
 
     ]),
 ];
@@ -41,7 +41,7 @@ const UserDashboard = () => {
         setTheme(value ? 'dark' : 'light');
     };
     const onClick = (e) => {
-        console.log('click ', e);
+       
         setCurrent(e.key);
     };
 
@@ -88,7 +88,7 @@ const UserDashboard = () => {
             <div className='mobilemenu'>
                 <div onClick={() => { setCurrent('2') }}><RiReservedFill /></div>
                 <div onClick={() => { setCurrent('1') }}> <IoIosAddCircle /></div>
-                <div onClick={() => { setCurrent('3') }}><IoSettingsSharp /></div>
+                <div onClick={() => { setCurrent('3') }}><UserOutlined /></div>
             </div>
             <div className='contentuserdash'>
                 {current === '1' && <AddTime />}

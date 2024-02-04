@@ -5,9 +5,10 @@ import { ContextLogin } from '../../../ContextApi/ContextLogin/ContextLogin';
 
 export default function Login() {
     const loginC=useContext(ContextLogin)
-
+const navi=useNavigate()
   return (
-    <form action="" onSubmit={(e)=>loginC.submithandler(e)}>
+   <>
+   <form action="" onSubmit={(e)=>loginC.submithandler(e)}>
     ایمیل:
     <br /> <input onChange={(e)=>loginC.setemail(e.target.value)} type="text" placeholder='ایمیل خود را وارد نمایید...' />
     <br />
@@ -22,5 +23,9 @@ export default function Login() {
         <input type="submit" onClick={(event) => { event.preventDefault(); loginC.setsignstatus(true) }} value="ثبت نام" />
     </div>
 </form>
+
+<div type="submit" style={{padding:"15px",color:"white",cursor:"pointer",boxSizing:"unset!important"}} onClick={()=>navi('../adminlogin')} value="ورود ادمین" >ورود ادمین</div>
+
+</>
   )
 }

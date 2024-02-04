@@ -1,13 +1,15 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ContextLogin } from "../ContextLogin/ContextLogin";
-
+import { Space, Table, Popconfirm, message, Alert } from 'antd';
+import { Api } from "../../Api";
 export const UserInfoContext = createContext({
     datauser:()=>{},
     datarezerv:()=>{},
     setdatarezerv:()=>{},
     setdeleteitem:()=>{},
-    deleteitem:()=>{}
+    deleteitem:()=>{},
+    handleDelete:()=>{}
 })
 
 export const UserInfoContextProvider = (props) => {
@@ -33,7 +35,7 @@ export const UserInfoContextProvider = (props) => {
       useEffect(() => {
         const contentusers = async () => {
             try {
-                const res = await fetch(`http://localhost/Rez/api.php/reservations`);
+                const res = await fetch(`${Api}reservations`);
                 const data = await res.json();
                 setdatarezerv(data);
             } catch (error) {
@@ -45,12 +47,33 @@ export const UserInfoContextProvider = (props) => {
 
     },[deleteitem]);
 
+
+    const handleDelete = async (reservationId) => {
+        try {
+           await fetch(`${Api+reservationId}`, {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
+    
+          message.success('نوبت با موفقیت حذف شد');
+          setdeleteitem(!deleteitem)
+          // Consider fetching updated data after deletion
+        } catch (error) {
+          console.error('Error deleting reservation:', error);
+          message.error('خطا در حذف نوبت');
+        }
+      };
+    
+    
     const vals = {
         datauser,
         datarezerv,
         setdatarezerv,
         setdeleteitem,
-        deleteitem
+        deleteitem,
+        handleDelete
     }
     return <UserInfoContext.Provider value={vals}>{children}</UserInfoContext.Provider>
 }
