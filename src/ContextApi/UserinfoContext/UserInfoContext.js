@@ -50,7 +50,7 @@ export const UserInfoContextProvider = (props) => {
 
     const handleDelete = async (reservationId) => {
         try {
-           await fetch(`${Api+reservationId}`, {
+           await fetch(`${Api}reservations/${reservationId}`, {
             method: 'DELETE',
             headers: {
               'Content-Type': 'application/json',
