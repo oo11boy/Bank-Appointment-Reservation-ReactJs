@@ -2,12 +2,14 @@
 
 This project is a React.js application that allows users to book appointments at a bank for a specific day and time. The appointment details are stored in a MySQL database using PHP and SQL. The system also provides administrative access for managing appointments.
 
-<> NEED VPN <> **Demo:** [View Demo](https://bankrez.vercel.app/) <> NEED VPN <>
+< NEED VPN > **Demo:** [View Demo](https://bankrez.vercel.app/) < NEED VPN >
 
 ## Features
 
 - **Book Appointment:** Users can select a specific date and time to book an appointment.
 - **Delete Appointment:** Users have the option to delete their booked appointments.
+- **User Registration and Login:** Users can register for an account and log in to manage their appointments.
+- **Admin Dashboard:** Administrators have access to a dashboard to view and manage all appointments.
 - **Responsive Design:** The application is designed to be fully responsive and works well on various devices.
 
 ## Technologies Used
